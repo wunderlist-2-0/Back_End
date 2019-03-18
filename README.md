@@ -8,8 +8,8 @@ Back_End repo
 `password` (string)
 ```
 
-- POST `http://*deployed site here*/register` = register a new user
-- POST `http://*deployed site here*/login` = login an existing user
+- POST `https://wunderlist-buildweek.herokuapp.com/register` = register a new user
+- POST `https://wunderlist-buildweek.herokuapp.com/login` = login an existing user
 
 ##### Todo Items
 ```js
@@ -17,9 +17,10 @@ Back_End repo
 `text` (text),
 `date` (string),
 `completed` (boolean),
+`userId` ()
 ```
 
-- GET `http://*deployed site here*/todos` = recieve list of all todo's
-- POST `http://*deployed site here*/todos` = add a new todo
-- PUT `http://*deployed site here*/todos/:id` = update a todo
-- DELETE `http://*deployed site here*/todos/:id` = deletes a todo
+- GET `https://wunderlist-buildweek.herokuapp.com/todos` = recieve list of all todo's
+- POST `https://wunderlist-buildweek.herokuapp.com/todos` = add a new todo
+- PUT `https://wunderlist-buildweek.herokuapp.com/todos/:id` = update a todo
+- DELETE `https://wunderlist-buildweek.herokuapp.com/todos/:id` = deletes a todo
