@@ -2,6 +2,7 @@ const router = require('express').Router();
 const database = require('../database/dbConfig');
 const bcrypt = require('bcryptjs');
 
+// POST register
 router.post('/register', async (req, res) => {
     let user = req.body;
     const hash = bcrypt.hashSync(user.password, 10);
@@ -19,5 +20,10 @@ router.post('/register', async (req, res) => {
         })
     }
 });
+
+// POST login
+router.post('/login', async (req, res) => {
+
+})
 
 module.exports = router;
