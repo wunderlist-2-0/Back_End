@@ -1,11 +1,31 @@
 {
-  "name": "Back_End",
+  "name": "back_end",
   "version": "1.0.0",
+  "description": "Back_End repo",
   "main": "index.js",
-  "repository": "https://github.com/wunderlist-2-0/Back_End.git",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "server": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wunderlist-2-0/Back_End.git"
+  },
   "author": "J A <jarata@gmail.com>",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wunderlist-2-0/Back_End/issues"
+  },
+  "homepage": "https://github.com/wunderlist-2-0/Back_End#readme",
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "helmet": "^3.16.0",
+    "knex": "^0.16.3",
+    "morgan": "^1.9.1",
+    "sqlite3": "^4.0.6"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
   }
 }
