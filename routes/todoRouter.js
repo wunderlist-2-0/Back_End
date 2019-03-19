@@ -2,11 +2,9 @@ const router = require('express').Router();
 const database = require('../database/dbConfig');
 
 // GET todos
-router.get('/list/:id', async (req, res) => {
-    const id = await database('users').where(req.body.id)
-    const nId = req.params.id;
+router.get('/list', async (req, res) => {
     try {
-        const todo = await database('todos').where(id).get(nId);
+        const todo = await database('todos').where('userId', req.body.id)
         res.status(200).json(todo)
     } catch (error) {
         res.status(500).json({
@@ -14,16 +12,6 @@ router.get('/list/:id', async (req, res) => {
         })
     }
 });
-// router.get('/list', async (req, res) => {
-//     const {id} = req.params;
-//     try {
-//         res.send(id)
-//     } catch (error) {
-//         res.status(500).json({
-//             error: "The todo's information could not be retrieved"
-//         })
-//     }
-// });
 
 // GET/:id todos
 // router.get('/list/:id', async (req, res) => {
