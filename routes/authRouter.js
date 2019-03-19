@@ -32,7 +32,8 @@ router.post('/login', async (req, res) => {
             const token = genToken(user);
             res.status(200).json({
                 message: `Welcome ${user.username}, you are logged in for 1 hour!`,
-                token
+                token,
+                id: user.id
             })
         } else {
             res.status(401).json({
