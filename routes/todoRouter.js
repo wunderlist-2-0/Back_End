@@ -1,9 +1,16 @@
 const router = require('express').Router();
-const db = require('../database/dbConfig');
+const database = require('../database/dbConfig');
 
 // GET todos
 router.get('/list', async (req, res) => {
-    res.send(`GET todo's auth test!`)
+    try {
+        const todo = await database('todos');
+        res.status(200).json(todo)
+    } catch (error) {
+        res.status(500).json({
+            error: "The todo's information could not be retrieved"
+        })
+    }
 });
 //
 // // GET/:id todos
