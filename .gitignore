@@ -6,13 +6,18 @@
 # testing
 /coverage
 
+# node modules
+node_modules/
+
 # production
 /build
 
 # editor
 .vscode
+.idea
 
 # misc
+.env
 .DS_Store
 .env.local
 .env.development.local
