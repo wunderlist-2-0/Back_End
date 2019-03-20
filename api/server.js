@@ -3,7 +3,8 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const cors = require('cors');
 
-const { auth } = require('../database/helpers/auth');
+const { logged } = require('../database/middleware/logged');
+const { auth } = require('../database/middleware/auth');
 const authRouter = require('../routes/authRouter.js');
 const todoRouter = require('../routes/todoRouter.js');
 
@@ -16,7 +17,7 @@ server.use(cors());
 server.use(morgan('dev'));
 
 server.use('/', authRouter);
-server.use('/todos', auth, todoRouter);
+server.use('/todos', auth, logged, todoRouter);
 
 // sanity check
 server.get('/', async (req, res) => {
