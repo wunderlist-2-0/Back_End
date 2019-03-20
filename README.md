@@ -14,13 +14,18 @@ Back_End repo
 ##### Todo Items
 ```js
 `id` (number),
-`text` (text),
-`date` (string),
+`title` (string),
+`task` (string),
+`notes` (string),
+`setDate` (date),
+`userId` (integer),
 `completed` (boolean),
-`userId` ()
+`created_at` (datetime),
+`updated_at` (datetime)
 ```
 
-- GET `https://wunderlist-buildweek.herokuapp.com/todos` = recieve list of all todo's
-- POST `https://wunderlist-buildweek.herokuapp.com/todos` = add a new todo
-- PUT `https://wunderlist-buildweek.herokuapp.com/todos/:id` = update a todo
-- DELETE `https://wunderlist-buildweek.herokuapp.com/todos/:id` = deletes a todo
+- GET `https://wunderlist-buildweek.herokuapp.com/todos/list` = receive list of all todo's
+- GET `https://wunderlist-buildweek.herokuapp.com/todos/list/:id` = receive a specific todo
+- POST `https://wunderlist-buildweek.herokuapp.com/todos/create` = add a new todo
+- PUT `https://wunderlist-buildweek.herokuapp.com/todos/edit/:id` = update a todo
+- DELETE `https://wunderlist-buildweek.herokuapp.com/todos/delete/:id` = deletes a todo
