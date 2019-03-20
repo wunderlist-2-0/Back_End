@@ -4,7 +4,7 @@ const database = require('../database/dbConfig');
 // GET todos
 router.get('/list', async (req, res) => {
     try {
-        const todo = await database('todos').where('userId', req.body.id)
+        // const todo = await database('todos').where('userId', req.body.id);
         res.status(200).json(todo)
     } catch (error) {
         res.status(500).json({
@@ -38,19 +38,37 @@ router.post('/create', async (req, res) => {
 });
 
 // // PUT/:id todos
+
+// router.put('/edit/:id', async (req, res) => {
+//     const {id} = req.params;
+//     const todoB = req.body;
+//     try {
+//         const todo = await database('todos').where({id}).first();
+//         if (todo) {
+//             const update = await database('todos').where({id}).update(todoB);
+//             res.status(200).json(update)
+//         } else {
+//             res.status(404).json({
+//                 mesasage: "The todo with the specified ID does not exist"
+//             })
+//         }
+//     } catch (e) {
+//         res.status(500).json(e)
+//     }
+// });
+
 router.put('/edit/:id', async (req, res) => {
-    const {id} = req.params;
-    const todoB = req.body;
     try {
-        const todo = await database('todos').where({id}).first();
-        if (todo) {
-            const update = await database('todos').where({id}).update(todoB);
-            res.status(200).json(update)
-        } else {
-            res.status(404).json({
-                mesasage: "The todo with the specified ID does not exist"
+        if (req.params.id === undefined || req.body.title === undefined) {
+            res.status(400).json({
+                error: "Title is required for the todo"
             })
         }
+        const update = await database('todos').where(req.params.id).update(req.body);
+        res.status(200).json({
+            message: "Todo has been updated",
+            update
+        })
     } catch (e) {
         res.status(500).json(e)
     }
