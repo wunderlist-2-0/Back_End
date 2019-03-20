@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 
 const jwtKey = process.env.JWT_SECRET || 'WunderList has a secret secret!';
 
+// middleware to check for authorization
 function auth(req, res, next) {
     const token = req.get('Authorization');
     if (token) {
@@ -20,6 +21,7 @@ function auth(req, res, next) {
     }
 }
 
+// middleware to generate a secure token
 function genToken(user) {
     const payload = {
         subject: user.id,

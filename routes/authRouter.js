@@ -2,7 +2,7 @@ const router = require('express').Router();
 const database = require('../database/dbConfig');
 const bcrypt = require('bcryptjs');
 // Token generation, cookie
-const { genToken } = require('../database/helpers/auth');
+const { genToken } = require('../database/middleware/auth');
 
 // POST register
 router.post('/register', async (req, res) => {
@@ -32,8 +32,7 @@ router.post('/login', async (req, res) => {
             const token = genToken(user);
             res.status(200).json({
                 message: `Welcome ${user.username}, you are logged in for 1 hour!`,
-                token,
-                id: user.id
+                token
             })
         } else {
             res.status(401).json({
