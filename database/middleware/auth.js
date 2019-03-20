@@ -16,7 +16,7 @@ function auth(req, res, next) {
         })
     } else {
         return res.status(401).json({
-            error: "No token provided, set on Authorization header"
+            error: "User not logged in"
         })
     }
 }

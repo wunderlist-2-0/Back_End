@@ -15,9 +15,9 @@ router.get('/list', async (req, res) => {
 });
 
 // GET/:id todos
-// router.get('/list/:id', async (req, res) => {
-//
-// });
+router.get('/list/:id', async (req, res) => {
+
+});
 
 // POST todos
 router.post('/create', async (req, res) => {
@@ -39,33 +39,15 @@ router.post('/create', async (req, res) => {
 });
 
 // // PUT/:id todos
-
-// router.put('/edit/:id', async (req, res) => {
-//     const {id} = req.params;
-//     const todoB = req.body;
-//     try {
-//         const todo = await database('todos').where({id}).first();
-//         if (todo) {
-//             const update = await database('todos').where({id}).update(todoB);
-//             res.status(200).json(update)
-//         } else {
-//             res.status(404).json({
-//                 mesasage: "The todo with the specified ID does not exist"
-//             })
-//         }
-//     } catch (e) {
-//         res.status(500).json(e)
-//     }
-// });
-
 router.put('/edit/:id', async (req, res) => {
+    const id = req.params.id;
     try {
-        if (req.params.id === undefined || req.body.title === undefined) {
+        if (id === undefined || req.body.title === undefined) {
             res.status(400).json({
                 error: "Title is required for the todo"
             })
         }
-        const update = await database('todos').where(req.params.id).update(req.body);
+        const update = await database('todos').where('id', id).update(req.body);
         res.status(200).json({
             message: "Todo has been updated",
             update
