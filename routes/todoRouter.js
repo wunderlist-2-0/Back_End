@@ -38,15 +38,28 @@ router.post('/create', async (req, res) => {
 });
 
 // // PUT/:id todos
-// router.put('/edit/:id', async (res, res) => {
-//
-// });
-//
+router.put('/edit/:id', async (req, res) => {
+    const {id} = req.params;
+    const todoB = req.body;
+    try {
+        const todo = await database('todos').where({id}).first();
+        if (todo) {
+            const update = await database('todos').where({id}).update(todoB);
+            res.status(200).json(update)
+        } else {
+            res.status(404).json({
+                mesasage: "The todo with the specified ID does not exist"
+            })
+        }
+    } catch (e) {
+        res.status(500).json(e)
+    }
+});
 
 // DELETE/:id todos
 router.delete('/delete/:id', async (req, res) => {
-    const id = req.body.id;
-    const count = await database('todos').where(id).del();
+    const {id} = req.params.id;
+    const count = await database('todos').where({id}).del();
     try {
         if (count > 0) {
             res.status(200).json({
@@ -58,7 +71,7 @@ router.delete('/delete/:id', async (req, res) => {
             })
         }
     } catch (e) {
-        console.log(req.params)
+        console.log(req.params);
         res.status(500).json(e)
     }
 });
