@@ -4,7 +4,8 @@ const database = require('../database/dbConfig');
 // GET todos
 router.get('/list', async (req, res) => {
     try {
-        // const todo = await database('todos').where('userId', req.body.id);
+        console.log(req.decoded.subject)
+        const todo = await database('todos').where('userId', req.decoded.subject);
         res.status(200).json(todo)
     } catch (error) {
         res.status(500).json({
@@ -76,8 +77,8 @@ router.put('/edit/:id', async (req, res) => {
 
 // DELETE/:id todos
 router.delete('/delete/:id', async (req, res) => {
-    const {id} = req.params.id;
-    const count = await database('todos').where({id}).del();
+    const id = req.params.id;
+    const count = await database('todos').where('id', id).del();
     try {
         if (count > 0) {
             res.status(200).json({
