@@ -28,7 +28,7 @@ router.post('/create', async (req, res) => {
                 message: "Todo needs a title"
             })
         }
-        const todo = await database('todos').insert(todoT);
+        const todo = await database('todos').insert({...todoT, 'userId': req.decoded.subject});
         res.status(201).json({
             message: "Todo has been created",
             todo
