@@ -1,7 +1,10 @@
-####WunderList 2.0
+#### WunderList 2.0
 A clone of WunderList, a note and task keeping app.
 
 ## API Endpoints
+
+##### Sanity Check
+-GET `https://wunderlist-buildweek.herokuapp.com/` = receive a status check
 
 ##### Login/Register
 ```js
