@@ -1,4 +1,5 @@
-Back_End repo
+####WunderList 2.0
+A clone of WunderList, a note and task keeping app.
 
 ## API Endpoints
 
