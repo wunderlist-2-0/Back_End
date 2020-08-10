@@ -4,7 +4,6 @@ const database = require('../database/dbConfig');
 // GET todos
 router.get('/list', async (req, res) => {
     try {
-        console.log(req.decoded.subject)
         const todo = await database('todos').where('userId', req.decoded.subject);
         res.status(200).json(todo)
     } catch (error) {
@@ -16,7 +15,15 @@ router.get('/list', async (req, res) => {
 
 // GET/:id todos
 router.get('/list/:id', async (req, res) => {
-
+    const id = req.params.id;
+    try {
+        const todo = await database('todos').where({userId: req.decoded.subject, id: id});
+        res.status(200).json(todo)
+    } catch (error) {
+        res.status(500).json({
+            error: "The todo with the specified ID does not exist"
+        })
+    }
 });
 
 // POST todos
@@ -33,8 +40,10 @@ router.post('/create', async (req, res) => {
             message: "Todo has been created",
             todo
         })
-    } catch (e) {
-        res.status(500).json(e)
+    } catch (error) {
+        res.status(500).json({
+            error: "The todo could not be created"
+        })
     }
 });
 
@@ -52,8 +61,10 @@ router.put('/edit/:id', async (req, res) => {
             message: "Todo has been updated",
             update
         })
-    } catch (e) {
-        res.status(500).json(e)
+    } catch (error) {
+        res.status(500).json({
+            error: "The todo with the specified ID does not exist"
+        })
     }
 });
 
